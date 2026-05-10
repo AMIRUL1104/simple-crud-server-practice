@@ -2,6 +2,7 @@ import Deleteuser from "@/components/users/Deleteuser";
 import UpdateUser from "@/components/users/UpdateUser";
 import { getUsers } from "../lib/data";
 import Link from "next/link";
+import { deleteUser } from "../lib/action";
 
 async function UsersPage() {
   const userData = await getUsers();
@@ -83,8 +84,8 @@ async function UsersPage() {
                   {/* Actions */}
                   <td className="px-6 py-4">
                     <div className="flex items-center justify-center gap-2">
-                      <UpdateUser userId={user.id} />
-                      <Deleteuser userId={user.id} />
+                      <UpdateUser userId={user._id} />
+                      <Deleteuser deleteAction={deleteUser} userId={user._id} />
                       <Link
                         className=" text-blue-700  hover:underline"
                         href={`/users/${user._id}`}
