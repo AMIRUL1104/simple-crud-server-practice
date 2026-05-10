@@ -9,3 +9,9 @@ export async function getUsers() {
   const res = await req.json();
   return res;
 }
+
+export async function getUserById(id) {
+  const req = await fetch(`http://localhost:4000/users/${id}`);
+  const res = await req.json();
+  return res;
+}
