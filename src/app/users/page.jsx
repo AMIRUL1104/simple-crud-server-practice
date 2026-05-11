@@ -2,19 +2,28 @@ import Deleteuser from "@/components/users/Deleteuser";
 import UpdateUser from "@/components/users/UpdateUser";
 import { getUsers } from "../lib/data";
 import Link from "next/link";
-import { deleteUser } from "../lib/action";
+import { createUser, deleteUser } from "../lib/action";
 
 async function UsersPage() {
   const userData = await getUsers();
   return (
     <div className="min-h-screen bg-gray-50 px-6 py-10">
-      <div className="max-w-5xl mx-auto">
+      <div className=" max-w-5xl mx-auto ">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Users</h1>
-          <p className="text-sm text-gray-500 mt-1">
-            Manage all registered users
-          </p>
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Users</h1>
+            <p className="text-sm text-gray-500 mt-1">
+              Manage all registered users
+            </p>
+          </div>
+          {/* add new  user  */}{" "}
+          <Link
+            className=" text-blue-700  hover:underline"
+            href={`/users/new_user`}
+          >
+            Add New User
+          </Link>
         </div>
 
         {/* Table Card */}
@@ -84,7 +93,8 @@ async function UsersPage() {
                   {/* Actions */}
                   <td className="px-6 py-4">
                     <div className="flex items-center justify-center gap-2">
-                      <UpdateUser userId={user._id} />
+                      <UpdateUser UpdateAction={createUser} userId={user._id} />
+
                       <Deleteuser deleteAction={deleteUser} userId={user._id} />
                       <Link
                         className=" text-blue-700  hover:underline"
