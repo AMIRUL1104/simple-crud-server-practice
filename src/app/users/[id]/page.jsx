@@ -1,4 +1,5 @@
 import { getUserById } from "@/app/lib/data";
+import Link from "next/link";
 
 async function UserDetailsPage({ params }) {
   const { id } = await params;
@@ -77,12 +78,12 @@ async function UserDetailsPage({ params }) {
             </div>
 
             {/* Back Button */}
-            <a
+            <Link
               href="/users"
               className="mt-6 w-full inline-block text-center bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold py-3 rounded-xl transition-colors duration-200"
             >
               ← Back to Users
-            </a>
+            </Link>
           </div>
         </div>
       </div>

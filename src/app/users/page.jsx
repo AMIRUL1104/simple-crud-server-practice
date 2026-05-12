@@ -93,7 +93,12 @@ async function UsersPage() {
                   {/* Actions */}
                   <td className="px-6 py-4">
                     <div className="flex items-center justify-center gap-2">
-                      <UpdateUser UpdateAction={createUser} userId={user._id} />
+                      <Link
+                        className=" text-blue-700  hover:underline"
+                        href={`/users/${user._id}/update`}
+                      >
+                        Update
+                      </Link>
 
                       <Deleteuser deleteAction={deleteUser} userId={user._id} />
                       <Link

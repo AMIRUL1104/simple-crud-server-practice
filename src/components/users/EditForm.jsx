@@ -1,10 +1,13 @@
-"use client";
+// "use client";
 
+import { updateUser } from "@/app/lib/action";
 import Link from "next/link";
+import React from "react";
+function EditForm({ updateUserWrapper, user }) {
+  // console.log(user);
 
-function NewUserForm({ createUser }) {
   return (
-    <form action={createUser} className="px-8 py-6 space-y-5">
+    <form action={updateUserWrapper} className="px-8 py-6 space-y-5">
       {/* Name */}
       <div>
         <label className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">
@@ -13,6 +16,7 @@ function NewUserForm({ createUser }) {
         <input
           type="text"
           name="name"
+          defaultValue={user.user?.name}
           placeholder="e.g. Karim Hasan"
           required
           className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition"
@@ -29,6 +33,7 @@ function NewUserForm({ createUser }) {
           name="email"
           placeholder="e.g. karim@example.com"
           required
+          defaultValue={user.user?.email}
           className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition"
         />
       </div>
@@ -40,6 +45,7 @@ function NewUserForm({ createUser }) {
         </label>
         <select
           name="role"
+          defaultValue={user.user?.role}
           className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition"
         >
           <option value="user">User</option>
@@ -51,25 +57,20 @@ function NewUserForm({ createUser }) {
       {/* Buttons */}
       <div className="flex gap-3 pt-2">
         <Link
-          href={"/users"}
-          className="flex-1 py-3 rounded-xl border border-gray-200 text-sm font-semibold text-gray-600 hover:bg-gray-50 transition"
+          href="/users"
+          className="flex-1 py-3 rounded-xl border border-gray-200 text-sm font-semibold text-gray-600 hover:bg-gray-50 transition text-center"
         >
-          <button type="button" className="text-center w-full">
-            Cancel
-          </button>
+          Cancel
         </Link>
         <button
           type="submit"
-          //   onClick={handleSubmit}
-          //   disabled={loading}
-          className="flex-1 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold transition disabled:opacity-60"
+          className="flex-1 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold transition"
         >
-          {/* {loading ? "Creating..." : "Create User"} */}
-          Create User
+          Save Changes
         </button>
       </div>
     </form>
   );
 }
 
-export default NewUserForm;
+export default EditForm;

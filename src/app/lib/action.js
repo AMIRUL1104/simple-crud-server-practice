@@ -23,6 +23,28 @@ export async function createUser(formData) {
   return res;
 }
 
+export async function updateUser(id, formData) {
+  "use server";
+  const user = Object.fromEntries(formData.entries());
+
+  const req = await fetch(`http://localhost:4000/users/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+
+  const res = await req.json();
+  console.log("after update ", res);
+
+  if (res.modifiedCount > 0) {
+    redirect("/users");
+  }
+
+  return res;
+}
+
 export async function deleteUser(userId) {
   "use server";
   const req = await fetch(`http://localhost:4000/users/${userId}`, {
